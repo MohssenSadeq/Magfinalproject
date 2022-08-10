@@ -1,0 +1,104 @@
+﻿@model Magfinalproject.Models.student
+
+@{
+    ViewBag.Title = "الطلاب / التفاصيل";
+    Layout = "~/Views/Shared/_Layoutmagcontrol.cshtml";
+}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="~/Home/magcontrol">لوحة التحكم</a>
+    </li>
+    <li class="breadcrumb-item active">@ViewBag.Title</li>
+</ol>
+<h2 class="text-info" style="padding-right:1em;padding-top:1em">التفاصيل</h2>
+
+<div>
+  
+    <hr />
+    <dl class="dl-horizontal " style="padding-right:65px;padding-left:65px">
+        <dt>
+            @Html.DisplayNameFor(model => model.acadyear.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.acadyear.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.department.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.department.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user.nikname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.nikname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stuid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stuid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.photo)
+        </dt>
+
+        <dd>
+            <img src="~/uploads/@Model.photo" class="thumbnail" style="width:48px; height:48px" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.state)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.state)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+    </dl>
+</div>
+<hr /><p style="padding-right:2em">
+    @Html.ActionLink("تعديل", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("الرجوع إلى القائمة", "Index")
+</p>

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Magfinalproject.Models.college>
+
+@using Magfinalproject.Models;
+@{
+    ViewBag.Title = "  الموظفين /  كل الكليات و المراكز التعليمية ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ApplicationDbContext db = new ApplicationDbContext();
+    var staff = db.staffs;
+    var col = db.colleges;
+
+}
+<div class=" row page-header-row">
+
+    <ol class="breadcrumb" style="background-color: #0a192f;border-radius:0">
+        <li class="breadcrumb-item">
+            <a href="~/Home/Index">الرئيسية</a>
+        </li>
+        <li style="color:white" class="breadcrumb-item active">@ViewBag.Title </li>
+    </ol>
+
+    @{
+        foreach (var item in Model.Where(a => a.staffs.Count() != 0))
+        {
+            if (item.center.classname == "كلية")
+            {
+                <h3 class="mohsen"><i class=" fa fa-leanpub"></i> موظفين كلية : @item.name | @Html.ActionLink(" عرض الكل", "staff", new { id = item.id }, new { @class = "text-info" })</h3>
+            }
+            else
+            {
+                <h3 class="mohsen"><i class=" fa fa-leanpub"></i> موظفين مركز : @item.name | @Html.ActionLink(" عرض الكل", "staff", new { id = item.id }, new { @class = "text-info" })</h3>
+
+            }
+            <div class="form-horizontal">
+                <hr />
+                
+               
+
+                <div class="row panel-body mohsen">
+                    @foreach (var subItem in staff.Where(a => a.collegesid == item.id).Take(4))
+                    {
+                        <div class="col-xs-12 col-sm-12  col-md-3 col-lg-3  col-xl-3 thumbnail" style="margin-right:10px;max-width:300px;max-height:381.28px;background-color:white ; border:ridge">
+                            <img src="~/uploads/@subItem.photo" class="img-rounded" style="width:100%;height:241px " />
+                            <div style="height:100px; padding-right:15px">
+                                @{ if (subItem.name.Length <= 30)
+                                    {
+                                        <h3> @Html.ActionLink((Html.DisplayFor(model => subItem.dgreesid).ToString()+" : "+(Html.DisplayFor(m=>subItem.name).ToString())).ToString(), "Details_for_client", "staffs", new { id = subItem.id }, new { @class = " text-info" })  </h3>
+
+                                    }
+                                    else
+                                    {
+                                        <h3>@Html.ActionLink(Html.DisplayFor(model => subItem.name).ToString().Substring(0, 30) + "...", "Details_for_client", "staffs", new { id = subItem.id }, new { @class = " text-info" })  </h3>
+
+                                    }
+                                }
+
+                                <h6 style="color:slategray">  <span class="fa fa-clock-o"></span> @Html.DisplayFor(subIem => subItem.date) </h6>
+                            </div>
+                        </div>
+                                    }
+
+                </div>
+
+            </div>
+
+
+                                    }
+
+
+
+
+
+    }
+
+</div>

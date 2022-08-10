@@ -1,0 +1,36 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+@{
+    ViewBag.Title = "الصلاحيات / التفاصيل";
+    Layout = "~/Views/Shared/_Layoutmagcontrol.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="~/Home/magcontrol">لوحة التحكم</a>
+    </li>
+    <li class="breadcrumb-item active">@ViewBag.Title</li>
+</ol>
+
+
+<h2 class="text-info" style="padding-right:1em;padding-top:1em">التفاصيل</h2>
+
+
+    <hr />
+    <dl class="form-horizontal" style="padding-right:2em">
+
+        <dt>
+            @Html.DisplayName("الصلاحية")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+
+    <br />
+    <br />
+    <hr /><p style="padding-right:2em">
+        @Html.ActionLink("تعديل", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("الرجوع إلى القائمة", "Index")
+    </p>

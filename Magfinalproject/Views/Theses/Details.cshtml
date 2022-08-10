@@ -1,0 +1,67 @@
+﻿@model Magfinalproject.Models.Thesis
+
+@{
+    ViewBag.Title = "المقالات / التفاصيل";
+    Layout = "~/Views/Shared/_Layoutmagcontrol.cshtml";
+}
+
+
+
+<div>
+    <h2 class="text-info" style="padding-right:1em;padding-top:1em">التفاصيل</h2>
+    <hr />
+    <dl class="form-horizontal " style="padding-right:2em;padding-top:1em">
+        <dt>
+            @Html.DisplayName("أسم القسم")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.department.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.supervisor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.supervisor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("الدرجة العلمية")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thesistype)
+        </dd>
+
+    </dl>
+</div>
+<hr /><p style="padding-right:2em">
+    @Html.ActionLink("تعديل", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("الرجوع إلى القائمة", "Index")
+</p>

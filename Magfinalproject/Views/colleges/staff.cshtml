@@ -1,0 +1,66 @@
+﻿@model Magfinalproject.Models.college
+
+@{
+    if (Model.center.classname == "كلية")
+    {
+        ViewBag.Title = "   كلية  " + @Model.name + " / كل الموظفين  ";
+
+    }
+    else
+    {
+        ViewBag.Title = "   مركز  " + @Model.name + " / كل الموظفين  ";
+
+    }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var item = Model.staffs;
+}
+<div class=" row page-header-row">
+
+    <ol class="breadcrumb" style="background-color: #0a192f;border-radius:0">
+        <li class="breadcrumb-item">
+            <a href="~/Home/Index">الرئيسية</a>
+        </li>
+        <li style="color:white" class="breadcrumb-item active">@ViewBag.Title </li>
+    </ol>
+    @if (Model.center.classname == "كلية")
+    {
+    <h2 class="mohsen"><i class=" fa fa-leanpub"></i> موظفين كلية :  @Html.DisplayFor(model => model.name) </h2>
+    }
+    else
+    {
+    <h2 class="mohsen"><i class=" fa fa-leanpub"></i> موظفين مركز :  @Html.DisplayFor(model => model.name) </h2>
+
+    }
+
+
+    <hr />
+    <div class="form-horizontal">
+
+        <div class="row panel-body mohsen">
+            @foreach (var subItem in item)
+            {
+                <div class="col-xs-12 col-sm-12  col-md-3 col-lg-3  col-xl-3 thumbnail" style="margin-right:10px;max-width:300px;max-height:381.28px;background-color:white ; border:ridge">
+                    <img src="~/uploads/@subItem.photo" class="img-rounded" style="width:100%;height:241px " />
+                    <div style="height:100px; padding-right:15px">
+                        @{ if (subItem.name.Length <= 30)
+                            {
+                                <h3>@Html.ActionLink(Html.DisplayFor(model => subItem.name).ToString(), "Details_for_client", "staffs", new { id = subItem.id }, new { @class = " text-info" })  </h3>
+
+                            }
+                            else
+                            {
+                                <h3>@Html.ActionLink(Html.DisplayFor(model => subItem.name).ToString().Substring(0, 30) + "...", "Details_for_client", "staffs", new { id = subItem.id }, new { @class = " text-info" })  </h3>
+
+                            }
+                        }
+
+                        <h6 style="color:slategray">  <span class="fa fa-clock-o"></span> @Html.DisplayFor(subIem => subItem.date) </h6>
+                    </div>
+                </div>
+                            }
+        </div>
+
+    </div>
+
+
+         </div>

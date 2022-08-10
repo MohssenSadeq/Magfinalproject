@@ -1,0 +1,142 @@
+﻿@using Magfinalproject.Models;
+@{
+    ViewBag.Title = "بحث";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ApplicationDbContext db = new ApplicationDbContext();
+    string search = ViewBag.searchname;
+    var news = db.cardinfoes.Where(a => a.Category.classname.Contains(search)||a.title.Contains(search)||a.describtion.Contains(search) );
+    var college = db.colleges.Where(a => a.name.Contains(search) || a.about.Contains(search) );
+    var depart = db.departments.Where(a => a.name.Contains(search) || a.about.Contains(search)||a.college.name.Contains(search) );
+
+}
+<div class="jumbotron-fluid" style="background-color:#002147;padding:5em">
+    <h1 style="color:white">
+        <i class="fa fa-search"></i>   البحث 
+    </h1>
+</div>
+<style>
+    .jumbotron{
+           background-color:gray
+    }
+</style>
+<div class=" row page-header-row">
+   
+    @if (search == "")
+    {
+        <h2 class="mohsen"> البحث عن : <i class="text-info">لا شيء !</i> </h2>
+
+    }
+    else  if (search != "" && (news.Count() > 0 || college.Count() > 0) || depart.Count() > 0)
+    {
+       
+        <h2 class="mohsen"> البحث عن : <i class="text-info">@search</i> </h2>
+
+    <hr />
+   
+        if (news.Count() > 0)
+        {
+            <h2 class="mohsen jumbotron"> الأخبار و الأحداث</h2>
+
+
+
+            <div class="form-horizontal">
+
+                <div class="row panel-body mohsen">
+                    @foreach (var item in news)
+                    {
+                        <div class="col-xs-12 col-sm-4  col-sm-4 col-lg-4 thumbnail " style="margin-right:10px;max-width:300px;height:400.28px;background-color:white ; border:ridge">
+                            <img src="~/uploads/@item.pic" class="img-rounded" style="width:200%;height:181px " />
+                            <div style="height:100px; padding-right:15px">
+                                @{ if (item.title.Length <= 200)
+                                    {
+                                        <h5>@Html.ActionLink(Html.DisplayFor(model => item.title).ToString(), "Detailspost", "cardinfoes", new { id = item.ID }, new { @class = " text-info" })  </h5>
+
+                                    }
+                                    else
+                                    {
+                                        <h5>@Html.ActionLink(Html.DisplayFor(model => item.title).ToString().Substring(0, 200), "Detailspost", "cardinfoes", new { id = item.ID }, new { @class = " text-info" }) ...  </h5>
+
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                                    }
+                </div>
+            </div>    <hr />
+                                    }
+                                    if (college.Count() > 0)
+                                    {
+                                        <h2 class="mohsen jumbotron">الكليات</h2>
+
+
+
+                                        <div class="form-horizontal">
+
+                                            <div class="row panel-body mohsen">
+                                                @foreach (var item in college)
+                                                {
+                                                    <div class="col-xs-12 col-sm-4  col-sm-4 col-lg-4 thumbnail " style="margin-right:10px;max-width:300px;height:400.28px;background-color:white ; border:ridge">
+                                                        <img src="~/uploads/@item.photo" class="img-rounded" style="width:200%;height:181px " />
+                                                        <div style="height:100px; padding-right:15px">
+                                                            <h5> @Html.ActionLink(Html.DisplayFor(model => item.name).ToString(), "DetailsV", "colleges", new { id = item.id }, new { @class = " text-info" })  </h5>
+                                                            @{ if (item.about.Length >= 300)
+                                                                {
+                                                                    <h5>@Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(model => item.about).ToString().Substring(0, 200) + " ...")) </h5>
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    <h5>@Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(model => item.about).ToString()))</h5>
+
+                                                                }
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                                }
+                                            </div>
+                                        </div>    <hr />
+                                                                }
+                                                                if (depart.Count() > 0)
+                                                                {
+                                                                    <h2 class="mohsen jumbotron">أقسام الكليات</h2>
+
+
+
+                                                                    <div class="form-horizontal">
+
+                                                                        <div class="row panel-body mohsen">
+                                                                            @foreach (var item in depart)
+                                                                            {
+                                                                                <div class="col-xs-12 col-sm-4  col-sm-4 col-lg-4 thumbnail " style="margin-right:10px;max-width:300px;height:400.28px;background-color:white ; border:ridge">
+                                                                                    <img src="~/uploads/@item.photo" class="img-rounded" style="width:200%;height:181px " />
+                                                                                    <div style="height:100px; padding-right:15px">
+                                                                                        <h5> @Html.ActionLink(Html.DisplayFor(model => item.college.name).ToString(), "DetailsV", "departments", new { id = item.id }, new { @class = " text-info" })  </h5>
+                                                                                        <h5> @Html.ActionLink(Html.DisplayFor(model => item.name).ToString(), "DetailsV", "departments", new { id = item.id }, new { @class = " text-info" })  </h5>
+                                                                                        @{ if (item.about.Length >= 300)
+                                                                                            {
+                                                                                                <h5>@Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(model => item.about).ToString().Substring(0, 200) + " ...")) </h5>
+
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <h5>@Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(model => item.about).ToString()))</h5>
+
+                                                                                            }
+                                                                                        }
+
+                                                                                    </div>
+                                                                                </div>
+                                                                                            }
+                                                                        </div>
+                                                                    </div>    <hr />
+                                                                                                }
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                            <h3 class="text-info"style="margin-right:30px"><br /><i class="fa fa-info-circle"> </i> عفواً لا توجد نتائج, الرجاء إدخال ما تريد البحث عنه جيداً ! <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></h3>
+                                                                                            }
+                                                                                            
+
+    </div>

@@ -1,0 +1,61 @@
+﻿@model Magfinalproject.Models.acadyear
+
+@{
+    ViewBag.Title = "الفصل الدراسي / التعديل";
+    Layout = "~/Views/Shared/_Layoutmagcontrol.cshtml";
+}
+
+
+
+<style>
+    .row, form {
+        width: 100%;
+    }
+</style>
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="~/Home/magcontrol">لوحة التحكم</a>
+    </li>
+    <li class="breadcrumb-item active">@ViewBag.Title</li>
+</ol>
+
+<h2>التعديل</h2>
+<h4 class="text-warning"><i class="fa fa-info-circle"></i> هذا التعديل سيؤثر على جميع المعلومات المتصلة به في جدول البيانات, كن حذراً !</h4>
+<hr />
+<div class="row">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        
+            <h4>الفصل الدراسي</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+           
+
+            
+
+            <div class="form-group">
+                <div class=" col-sm-10">
+                    <input type="submit" value="حفظ" class="btn btn-primary" />
+                </div>
+            </div>
+       
+    }
+</div>
+   <p>
+    @Html.ActionLink("الرجوع إلى القائمة", "Index")
+</p>
+<script src="~/Scripts/jquery.min.js"></script>

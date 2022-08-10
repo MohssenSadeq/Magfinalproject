@@ -1,0 +1,124 @@
+﻿@model  Magfinalproject.Models.department
+@using Magfinalproject.Models;
+
+
+@{
+
+    ViewBag.Title = " كل أبحاث قسم : " + Model.name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var item = Model.thesis;
+    ApplicationDbContext db = new ApplicationDbContext();
+    var cardy = db.Theses.Where(a => a.departmentID == Model.id).FirstOrDefault();
+
+
+}
+
+<ol class="breadcrumb" style="background-color: #0a192f;border-radius:0">
+    <li class="breadcrumb-item">
+        <a href="~/Home">الرئيسية</a>
+    </li>
+    <li style="color:white" class="breadcrumb-item active">@ViewBag.Title </li>
+</ol>
+<style>
+    /*.col-sm-6{
+        width:90%;
+    }*/
+    .col-sm-12, .col-sm-6 {
+        padding-left: 0;
+    }
+</style>
+
+@*<div id="page-wrapper">*@
+<div style="margin-left: 2.5%;margin-bottom:3%">
+    <link href="~/vendor1/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <div id="page-wrapper" style="margin-right: 1.5%;width:100%;margin-top: 3%;margin-left:2%">
+
+        <div class="row" style="background-color: beige;">
+            <div class="col-sm-12 style=" direction:rtl">
+                <div class="panel panel-default">
+
+                    <!-- /.panel-heading -->
+                    <div class="panel-body" style="padding:0;margin:0">
+
+                        <!-- /.panel-heading -->
+                        <table style="width:100%;direction:rtl;text-align:center" class="table table-secondary table-hover" id="dataTables-example">
+
+                            @*<table style="margin-left: -18px; width:100%;direction:rtl;text-align:center;margin-right:25px" class="table table-secondary table-hover" id="dataTables-example">*@
+                            <thead>
+
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("الدرجة العلمية")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => cardy.name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => cardy.title)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => cardy.supervisor)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => cardy.date)
+                                    </th>
+                                  
+                                </tr>
+                            <tbody>
+                                @foreach (var subitem in item.OrderByDescending(en => en.date))
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => subitem.department.name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => subitem.thesistype)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => subitem.name)
+                                        </td>
+                                        <td>
+                                        @Html.DisplayFor(modelItem => subitem.title)
+                                        </td>
+                                       
+                                        <td>
+                                            @Html.DisplayFor(modelItem => subitem.supervisor)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => subitem.date.Year)
+                                        </td>
+                                          
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.col-lg-12 -->
+
+
+@section scripts{
+
+
+    <script src="~/vendor/jquery.dataTables.min.js"></script>
+    <script src="~/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="~/vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <script>
+            $(document).ready(function () {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
+            });
+    </script>
+}

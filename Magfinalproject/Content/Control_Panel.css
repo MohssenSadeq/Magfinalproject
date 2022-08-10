@@ -1,0 +1,32 @@
+﻿@font-face{
+    font-family:myFont;
+    src:url('font/Cairo-Regular.ttf')
+}
+
+@font-face{
+    font-family:myFont2;
+    src:url('font/Cairo-Regular.ttf')
+}
+
+body,div,label,text,textarea,html,col,nav{
+  
+    font-family:myFont2;
+}       
+
+ .div{
+            direction:rtl;
+        }   
+                  .p,h2{
+            direction:rtl;
+        }                 #mohsen{
+                            text-align:right;
+                          }
+        
+                      .form-control{
+            direction:rtl;
+        }
+                                      .form-group{
+            direction:rtl;
+               
+
+        }

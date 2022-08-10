@@ -1,0 +1,101 @@
+﻿@model Magfinalproject.Models.subject
+
+@{
+    ViewBag.Title = "المواد الدراسية / الحذف";
+    Layout = "~/Views/Shared/_Layoutmagcontrol.cshtml";
+}
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="~/Home/magcontrol">لوحة التحكم</a>
+    </li>
+    <li class="breadcrumb-item active">@ViewBag.Title</li>
+</ol>
+<h2 class="text-danger" style="padding-right:1em;padding-top:25px">الحذف</h2>
+<h3 class="text-info" style="padding-right:1em;padding-top:25px">هل أنت متأكد للقيام بعملية الحذف ؟</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.acadyear.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.acadyear.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.department.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.department.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user.nikname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.nikname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lecture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lecture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lab)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lab)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.credit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.credit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prerequest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prerequest)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <hr /><div class="form-actions" style="padding-right:2em">
+    <input type="submit" value="حذف" class="btn btn-danger" /> |
+    @Html.ActionLink("الرجوع إلى القائمة", "Index")
+</div>
+    }
+</div>

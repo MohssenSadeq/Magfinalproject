@@ -1,0 +1,35 @@
+﻿@model Magfinalproject.Models.center
+
+@{
+    ViewBag.Title = "المراكز العلمية / التفاصيل";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-info" style="padding-right:1em;padding-top:1em">التفاصيل</h2>
+
+<div>
+
+    <hr />
+    <dl class="form-horizontal " style="padding-right:2em;padding-top:1em">
+        <dt>
+            @Html.DisplayNameFor(model => model.classname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.classname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+    </dl>
+</div>
+<hr /><p style="padding-right:2em">
+    @Html.ActionLink("تعديل", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("الرجوع إلى القائمة", "Index")
+</p>

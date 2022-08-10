@@ -1,0 +1,89 @@
+﻿@model Magfinalproject.Models.department
+
+@{
+    ViewBag.Title = "الأقسام / التفاصيل";
+    Layout = "~/Views/Shared/_Layoutmagcontrol.cshtml";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="~/Home/magcontrol">لوحة التحكم</a>
+    </li>
+    <li class="breadcrumb-item active">@ViewBag.Title</li>
+</ol>
+<h2 class="text-info" style="padding-right:1em;padding-top:1em">قسم : @Html.DisplayFor(model => model.name)</h2>
+<hr />
+
+<div>
+ 
+    <dl class="form-horizontal " style="padding-right:2em;padding-top:1em">
+        <dt>
+            @Html.DisplayNameFor(model => model.college.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.college.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dgreeid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dgreeid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.photo)
+        </dt>
+
+        <dd>
+            <img src="~/uploads/@Model.photo" class="thumbnail" width="460" height="360" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.about)
+        </dt>
+
+        <dd>
+            @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(model => model.about).ToString()))
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.goals)
+            </dt>
+
+            <dd>
+                @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(model => model.goals).ToString()))
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.digrees)
+            </dt>
+
+            <dd>
+                @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(model => model.digrees).ToString()))
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.contact)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.contact)
+            </dd>*@
+
+    </dl>
+</div>
+<hr /><p style="padding-right:2em">
+    @Html.ActionLink("تعديل", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("الرجوع إلى القائمة", "Index")
+</p>

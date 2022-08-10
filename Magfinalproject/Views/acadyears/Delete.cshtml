@@ -1,0 +1,49 @@
+﻿@model Magfinalproject.Models.acadyear
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layoutmagcontrol.cshtml";
+}
+
+<h2>حذف</h2>
+
+<h3>هل انت متاكد من حذف هذا؟</h3>
+<div>
+    <h4>الفصل الدراسي</h4>
+    <hr />
+    <dl class="form-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.user.nikname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.nikname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" /> |
+            @Html.ActionLink("العوده للقائمة الرئيسية", "Index")
+        </div>
+    }
+</div>

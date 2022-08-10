@@ -1,0 +1,88 @@
+﻿@model Magfinalproject.Models.footer
+<link href="~/AdenCss/style.css" rel="stylesheet" />
+@using Magfinalproject.Models;
+@{
+    ViewBag.Title = Model.title+ " / التفاصيل";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ApplicationDbContext db = new ApplicationDbContext();
+    var it = db.footers;
+}
+
+<div class="row panel-body pad">
+
+    <div class=" row page-header-row">
+        <ol class="breadcrumb" style="background-color: #0a192f;border-radius:0">
+            <li class="breadcrumb-item">
+                <a href="~/Home/Index">الرئيسية</a>
+            </li>
+                <li style="color:white" class="breadcrumb-item active">@ViewBag.Title </li>
+        </ol>
+
+
+        <header id="header" style="direction:rtl">
+
+
+            <!-- Page Header -->
+            <div id="post-header" class="header-a">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-10" style="padding-right:35px;margin-top:25px">
+
+                            <h1>@Html.DisplayFor(model => model.title)</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Page Header -->
+        </header>
+        <div class="section ">
+            <!-- container -->
+            <div class="container-fluid">
+                <!-- row -->
+                <div class="row" style="margin-right:13px">
+                    <!-- Post content -->
+                    <div class="col-sm-12">
+                        <div class="thumbnail " style="border: ridge">
+                           @if (Model.pic != null)
+                           {
+                            <div class="section-row sticky-container">
+                                <div class="main-post">
+                                    <!--نعمل السي كاه ايدتور-->
+
+
+                                    <figure class="figure-img">
+                                        <img class="thumbnail" src="~/uploads/@Model.pic" alt="" style="margin-top:25px;max-height:450px">
+                                        <figcaption><!--نعمل العنوان--></figcaption>
+                                    </figure>
+                                </div>
+                               
+                            </div>
+                           }
+                            <div class="section-row">
+                                <div class="post-author">
+                                    <div class="media">
+
+                                        <div class="media-middle" style="padding:25px">
+                                            <div class="media-heading">
+                                                <h2><span class="fa fa-info-circle"></span>  حول</h2>
+                                            </div>
+                                            <p>@Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(model => model.describtion).ToString()))</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+          
+                    <!-- /aside -->
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+
+    </div>
+      </div>
